@@ -50,5 +50,6 @@ The final wss scores will be stored in the wss file
 
 ### Results 
 In Report Directory </br>
+Finetuned PubMedBert is our best result and the DAFF model is existing best industry model </br>
 ![Alt Text](./Report/citation_screening.png)
 
