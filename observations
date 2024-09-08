@@ -1,0 +1,1265 @@
+fastext -  no validation set , ran for 40 epocs on train test
+dae-  adding noisce to form autoencoders, used complete daa for this(not correct)/ embedding should only on train data
+cnn= test size =0.5 train_size =0.4  val_Size=0.1
+
+ Is it even possible to have ageneric model, what if teh abstracts are rejected on the basis of relvancy tot he topic/dataset
+
+Manual observations --
+ADHD dataset
+
+ word based model would perform better because of direct word match
+ % percentage of data points with keyword ADHD in included - 0.9 % and excluded - 0.13 %
+
+ objective design outcome .. doesnt guarantee inclusion or exclusion
+
+ check population size?
+ included samples -  0.15
+ excluded samples - 0.06
+ excluded less size-
+ Behavioral and electrophysiologic predictors of treatment response to stimulants in children with attention disorders  - 31 N
+ Alpha 2-agonist versus alpha 1-antagonist in mild-to-moderate hypertension: comparison of transdermal clonidine and terazosin monotherapies -  44
+ Population pharmacokinetics of methylphenidate in children with attention-deficit hyperactivity disorder - 273
+ Low-dose clozapine for the treatment of drug-induced psychosis in Parkinson's disease - 60
+
+ included -
+ Long-term methylphenidate therapy in children with comorbid attention-deficit hyperactivity disorder and chronic multiple tic disorder - 34
+ Bupropion in adults with Attention-Deficit/Hyperactivity Disorder: a randomized, double-blind study   - 42
+ Childhood behavior disorders and injuries among children and youth: a population-based study - > n = 16, 806)
+ Epilepsy and attention deficit hyperactivity disorder: is methylphenidate safe and effective? - 30
+
+
+check keywords
+Fraction of samples with word [context] in included citations : 0.05
+Fraction of samples with word [context] in excluded citations : 0.006016847172081829
+Fraction of samples with word [objectives] in included citations : 0.1
+Fraction of samples with word [objectives] in excluded citations : 0.032490974729241874
+Fraction of samples with word [design] in included citations : 0.4
+Fraction of samples with word [design] in excluded citations : 0.17208182912154033
+Fraction of samples with word [outcome measures] in included citations : 0.1
+Fraction of samples with word [outcome measures] in excluded citations : 0.030084235860409144
+Fraction of samples with word [data source] in included citations : 0.05
+Fraction of samples with word [data source] in excluded citations : 0.009626955475330927
+Fraction of samples with word [results] in included citations : 0.8
+Fraction of samples with word [results] in excluded citations : 0.5354993983152828
+Fraction of samples with word [conclusions] in included citations : 0.35
+Fraction of samples with word [conclusions] in excluded citations : 0.2575210589651023
+
+
+
+ADHD systematic review inlcusion criteria
+Eligibility criteria
+Inclusion criteria consisted of
+(1) articles published in English in peer-reviewed journals;
+(2) usage of appropriate empirical research methods, assessed using the quality appraisal criteria (see quality assessment section);
+(3) cases of any age who met the ADHD criteria (DSM-defined ADHD or ICD-defined hyperkinetic disorder) and/or were assessed for symptoms of the disorder on ADHD validated scales (e.g. Conners [14]);
+(4) standardized and validated tests assessing mathematical performance rather than school achievement; this allowed us to minimise biases in the assessment of mathematical ability introduced by discrepancy in curricula and school programmes;
+(5) studies where cases were selected for other learning disabilities in addition to ADHD were excluded (given the
+comorbidity between mathematical problems and learning disability [15, 16] this further exclusion ensures that
+reported discrepancies in mathematics performance between the cases and controls are driven by ADHD
+rather than other comorbid learning disabilities);
+(6)where the study uses a control group, this should in-clude only healthy individuals, with no symptoms of
+psychiatric or learning disability;
+(7) further exclusion was extended to studies with primary aims to investigate cognitive function in relation to ADHD if
+ the correlation between mathematical ability and ADHD was not tested or described (it is important to note that there is
+no gold standard to define mathematical ability; mathematics is a continuously distributed trait where ability
+and disability are identified using arbitrary cut-offs along a continua of performance);
+(8) for this reason, this article reviews studies where individuals diagnosed with ADHD are not solely selected for
+ mathematical disabilities;
+(9) investigations primarily evaluating the effects of pharmacological or non-pharmacological interventions on
+mathematical ability of children with ADHD were also excluded; and
+(10) studies that did not take medication into account and studies that adjusted the data analysis for
+usage of psychostimulant medication or asked the participants to stop medication 24–48 hours prior to testing
+mathematical ability were included.
+
+
+
+Extra features-
+journal name
+text language
+key terms like ADHD, should be taken care off by the model, try adding word feature base embeddings
+<should be only about 1 domain, negative set should take care of it>
+verify if it is a review paper < add review paper to negative set for the databases
+very less population < should depend on study, could very from 1 sys review to other>
+
+
+Datasets chosen
+Neuropathic pain — CAMRADES
+Calcium Channel Blockers 1218 100 (8.2%) 1118 (91.8%) 87.20% Yes
+Oral Hypoglycemics 503 136 (27.0%) 367 (73.0%) 69.16% Yes
+
+16 COPD 1606 196 (12.2%) 1410 (87.8%) 83.36% No
+
+
+23 Neuropathic pain — CAMRADES   29207 5011 (17.2%) 24196 (82.8%) 78.70% No
+
+migraine a woman s disease migraine a chronic disorder characterized by episodes of headache has a profound effect on the well being and general functioning of its victims not only during the acute attacks but also in terms of impairment of school achievement work performance and family social relationships despite staggering social and economic costs it remains under diagnosed and under treated worldwide migraine has been labeled a woman s disease because it is three times more common in women than men the attacks tend to be more severe and disabling among women and in some women they seem to be modulated by such hormonal milestones as menarche menstruation pregnancy and menopause after a brief review of the diagnosis of migraine this article will examine the nuances responsible for that label and their implications for treatment ,
+"Migraphy's migraine migraine migraine is a chronic disease characterized by headache. The welfare and general operation of the victims are not only during the acute attack, but also the damage of school achievement work performance and family social relationships.The social and economic costs that are still diagnosed are amazing. In global treatment, migraine is marked as female diseases, because it is often three times that of women in women, and attacks are often more serious in women.It is even more serious, and they seem to be more serious after a brief review of the diagnosis of migraine, which is adjusted by hormone milestones such as first -level menstruation and menopausal
+
+
+
+
+
+
+/home/max/miniconda3/envs/tf/bin/python /home/max/Work/study/Project_dir/main.py
+2022-11-05 22:19:03.663743: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-11-05 22:19:03.663766: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+INFO:root:There are  1 GPU(s) available.
+INFO:root:Running on the GPU:- NVIDIA GeForce GTX 1050 Ti
+INFO:root:
+
+
+
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:----------------------------------------------------------------------
+INFO:root:running for Dataset - > Triptans.tsv  with Seed - > 60
+INFO:root:setting up seed -> 60
+INFO:root:Splitting and preprocessing  the data
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/tokenization_utils_base.py:2302: FutureWarning: The `pad_to_max_length` argument is deprecated and will be removed in a future version, use `padding=True` or `padding='longest'` to pad to the longest sequence in the batch, or use `padding='max_length'` to pad to a max length. In this case, you can give a specific length with `max_length` (e.g. `max_length=45`) or leave max_length to None to pad to the maximal input size of the model (e.g. 512 for Bert).
+  warnings.warn(
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertModel: ['vocab_layer_norm.bias', 'vocab_layer_norm.weight', 'vocab_transform.weight', 'vocab_projector.weight', 'vocab_projector.bias', 'vocab_transform.bias']
+- This IS expected if you are initializing DistilBertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+INFO:root:Start training...
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |   20    |   0.592650   |     -      |     -     |   14.98
+INFO:root:   1    |   40    |   0.232109   |     -      |     -     |   6.77
+INFO:root:   1    |   60    |   0.460029   |     -      |     -     |   7.14
+INFO:root:   1    |   80    |   0.337516   |     -      |     -     |   7.24
+INFO:root:   1    |   100   |   0.233784   |     -      |     -     |   7.45
+INFO:root:   1    |   120   |   0.260295   |     -      |     -     |   7.89
+INFO:root:   1    |   140   |   0.245737   |     -      |     -     |   8.45
+INFO:root:   1    |   160   |   0.342144   |     -      |     -     |   8.86
+INFO:root:   1    |   173   |   0.193605   |     -      |     -     |   8.30
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |    -    |   0.328706   |  0.186311  |   96.43   |  113.58
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |   20    |   0.361368   |     -      |     -     |   16.84
+INFO:root:   2    |   40    |   0.333594   |     -      |     -     |   15.93
+INFO:root:   2    |   60    |   0.320964   |     -      |     -     |   22.55
+INFO:root:   2    |   80    |   0.238681   |     -      |     -     |   15.70
+INFO:root:   2    |   100   |   0.268098   |     -      |     -     |   22.72
+INFO:root:   2    |   120   |   0.402073   |     -      |     -     |   26.38
+INFO:root:   2    |   140   |   0.143237   |     -      |     -     |   15.23
+INFO:root:   2    |   160   |   0.329643   |     -      |     -     |   17.91
+INFO:root:   2    |   173   |   0.278329   |     -      |     -     |   8.67
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |    -    |   0.298464   |  0.143040  |   96.43   |  222.41
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |   20    |   0.100112   |     -      |     -     |   16.72
+INFO:root:   3    |   40    |   0.288823   |     -      |     -     |   15.12
+INFO:root:   3    |   60    |   0.028628   |     -      |     -     |   15.73
+INFO:root:   3    |   80    |   0.282472   |     -      |     -     |   18.81
+INFO:root:   3    |   100   |   0.021331   |     -      |     -     |   27.37
+INFO:root:   3    |   120   |   0.251865   |     -      |     -     |   34.95
+INFO:root:   3    |   140   |   0.006796   |     -      |     -     |   24.44
+INFO:root:   3    |   160   |   0.151678   |     -      |     -     |   30.62
+INFO:root:   3    |   173   |   0.200075   |     -      |     -     |   11.80
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |    -    |   0.145605   |  0.200172  |   95.54   |  262.71
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   4    |   20    |   0.038441   |     -      |     -     |   25.25
+INFO:root:   4    |   40    |   0.133617   |     -      |     -     |   25.20
+INFO:root:   4    |   60    |   0.284825   |     -      |     -     |   28.75
+INFO:root:   4    |   80    |   0.234265   |     -      |     -     |   38.78
+INFO:root:   4    |   100   |   0.005096   |     -      |     -     |   35.56
+INFO:root:   4    |   120   |   0.004418   |     -      |     -     |   34.30
+INFO:root:   4    |   140   |   0.003142   |     -      |     -     |   29.80
+INFO:root:   4    |   160   |   0.003393   |     -      |     -     |   29.95
+INFO:root:   4    |   173   |   0.004403   |     -      |     -     |   19.17
+INFO:root:----------------------------------------------------------------------
+INFO:root:   4    |    -    |   0.081837   |  0.234019  |   93.75   |  350.73
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root:Training complete!
+precision at 1.0 recall = 0.03761755485893417
+precision at 0.95 recall = 0.03761755485893417
+precision at 95 recall = 0.03761755485893417
+INFO:root:y_test values [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0]
+INFO:root:predictions values [[0.9981469  0.00185314]
+ [0.9981323  0.00186776]
+ [0.9977197  0.00228029]
+ [0.9977188  0.00228119]
+ [0.9968382  0.00316174]
+ [0.9980927  0.00190727]
+ [0.99769443 0.00230556]
+ [0.99797994 0.00202004]
+ [0.9981205  0.00187944]
+ [0.9977373  0.00226274]
+ [0.9977933  0.00220672]
+ [0.99806505 0.00193491]
+ [0.05467333 0.9453267 ]
+ [0.99812466 0.00187537]
+ [0.9980276  0.00197233]
+ [0.99756765 0.00243242]
+ [0.9980678  0.00193216]
+ [0.99804175 0.00195821]
+ [0.9419982  0.05800182]
+ [0.9947789  0.00522115]
+ [0.99803823 0.00196182]
+ [0.99808455 0.0019155 ]
+ [0.9981346  0.00186542]
+ [0.99817336 0.00182667]
+ [0.9981324  0.00186759]
+ [0.9980952  0.00190475]
+ [0.99808025 0.00191972]
+ [0.99804425 0.00195577]
+ [0.99797803 0.00202199]
+ [0.9979017  0.00209833]
+ [0.997797   0.00220307]
+ [0.99806625 0.00193379]
+ [0.9981248  0.00187517]
+ [0.9981238  0.00187612]
+ [0.9980829  0.00191718]
+ [0.9980977  0.00190235]
+ [0.99726117 0.0027388 ]
+ [0.9981628  0.00183716]
+ [0.9950216  0.0049784 ]
+ [0.9979631  0.00203698]
+ [0.0337179  0.9662821 ]
+ [0.9881054  0.0118946 ]
+ [0.9980963  0.00190377]
+ [0.99813    0.00186994]
+ [0.99815124 0.00184867]
+ [0.9981178  0.00188228]
+ [0.9977417  0.00225834]
+ [0.99813336 0.0018667 ]
+ [0.99804497 0.00195499]
+ [0.9981342  0.00186578]
+ [0.99800557 0.00199447]
+ [0.998059   0.00194099]
+ [0.99806076 0.00193926]
+ [0.99809533 0.00190472]
+ [0.99755114 0.00244891]
+ [0.9980445  0.0019555 ]
+ [0.9981018  0.00189829]
+ [0.99814045 0.00185953]
+ [0.9981193  0.00188073]
+ [0.9980878  0.00191221]
+ [0.99809057 0.00190946]
+ [0.04171696 0.95828307]
+ [0.9981079  0.00189204]
+ [0.9981263  0.0018737 ]
+ [0.9975695  0.0024305 ]
+ [0.04749343 0.95250654]
+ [0.99814475 0.00185521]
+ [0.99812883 0.00187116]
+ [0.998092   0.00190794]
+ [0.99811906 0.00188087]
+ [0.9966798  0.00332022]
+ [0.99815327 0.00184666]
+ [0.99809235 0.0019076 ]
+ [0.99816114 0.00183892]
+ [0.99810886 0.00189113]
+ [0.998133   0.00186701]
+ [0.9981008  0.00189919]
+ [0.41044644 0.5895536 ]
+ [0.9980603  0.0019397 ]
+ [0.9980738  0.00192611]
+ [0.9980173  0.0019827 ]
+ [0.9980975  0.00190255]
+ [0.99808633 0.00191364]
+ [0.9979315  0.00206848]
+ [0.9980726  0.00192731]
+ [0.9942912  0.00570887]
+ [0.99813485 0.00186516]
+ [0.9980558  0.00194418]
+ [0.99805164 0.0019484 ]
+ [0.9981488  0.00185126]
+ [0.99808276 0.00191726]
+ [0.9981177  0.00188237]
+ [0.99811244 0.00188757]
+ [0.9979278  0.00207226]
+ [0.99804735 0.00195264]
+ [0.99785393 0.00214602]
+ [0.997959   0.002041  ]
+ [0.99795085 0.00204913]
+ [0.49738777 0.50261223]
+ [0.9979651  0.00203497]
+ [0.99812025 0.00187971]
+ [0.9978376  0.00216244]
+ [0.99782556 0.00217436]
+ [0.9963348  0.00366518]
+ [0.99795735 0.00204263]
+ [0.99706525 0.00293473]
+ [0.9981433  0.00185668]
+ [0.9980799  0.00192015]
+ [0.99720997 0.00279003]
+ [0.9969741  0.00302593]
+ [0.9980262  0.00197383]
+ [0.9978077  0.00219232]
+ [0.9981382  0.00186181]
+ [0.99786973 0.00213026]
+ [0.9980596  0.00194043]
+ [0.9975898  0.00241014]
+ [0.03106155 0.96893847]
+ [0.9981142  0.00188573]
+ [0.9979532  0.00204675]
+ [0.99813545 0.00186457]
+ [0.99793637 0.00206368]
+ [0.9980786  0.0019214 ]
+ [0.99810165 0.00189842]
+ [0.9980159  0.00198408]
+ [0.03001298 0.96998703]
+ [0.99806684 0.00193314]
+ [0.18520835 0.8147916 ]
+ [0.9981482  0.00185177]
+ [0.998069   0.00193101]
+ [0.9980736  0.00192646]
+ [0.9980805  0.00191947]
+ [0.99809605 0.00190394]
+ [0.99811447 0.00188553]
+ [0.02734187 0.9726581 ]
+ [0.99807954 0.00192047]
+ [0.99804187 0.00195816]
+ [0.99813336 0.00186662]
+ [0.998095   0.00190504]
+ [0.9981647  0.00183525]
+ [0.9981249  0.00187513]
+ [0.9817061  0.01829392]
+ [0.9981719  0.00182811]
+ [0.998095   0.00190502]
+ [0.9981224  0.00187764]
+ [0.99576294 0.00423705]
+ [0.99716187 0.00283817]
+ [0.9976649  0.00233513]
+ [0.9981463  0.00185376]
+ [0.9980781  0.00192188]
+ [0.9958282  0.00417176]
+ [0.02722638 0.9727736 ]
+ [0.0290491  0.9709509 ]
+ [0.99808925 0.00191074]
+ [0.9980946  0.00190534]
+ [0.9981793  0.00182064]
+ [0.99800366 0.00199629]
+ [0.9980836  0.00191638]
+ [0.9980196  0.00198044]
+ [0.99807596 0.00192404]
+ [0.99809116 0.00190884]
+ [0.9980258  0.00197427]
+ [0.99752504 0.00247496]
+ [0.6833799  0.31662008]
+ [0.99811256 0.00188747]
+ [0.9980422  0.0019578 ]
+ [0.9977518  0.00224823]
+ [0.99773896 0.00226109]
+ [0.9981091  0.00189089]
+ [0.9980414  0.00195854]
+ [0.9981096  0.00189044]
+ [0.99795294 0.00204707]
+ [0.99816567 0.00183434]
+ [0.9980026  0.00199743]
+ [0.9977823  0.00221773]
+ [0.9980969  0.00190311]
+ [0.9951449  0.00485504]
+ [0.9981072  0.00189281]
+ [0.98427355 0.01572642]
+ [0.9981042  0.00189578]
+ [0.99813557 0.00186436]
+ [0.9980806  0.00191941]
+ [0.9980919  0.0019081 ]
+ [0.9981711  0.00182893]
+ [0.99814713 0.00185294]
+ [0.99795014 0.00204993]
+ [0.99813735 0.00186258]
+ [0.9981669  0.00183301]
+ [0.99810934 0.00189068]
+ [0.99575704 0.00424297]
+ [0.9978144  0.00218557]
+ [0.99800414 0.00199591]
+ [0.99783176 0.00216828]
+ [0.9978853  0.00211467]
+ [0.02767421 0.97232586]
+ [0.9980959  0.00190405]
+ [0.99812526 0.00187476]
+ [0.9981737  0.00182625]
+ [0.9976743  0.00232569]
+ [0.9980812  0.00191879]
+ [0.99810237 0.00189766]
+ [0.998061   0.00193904]
+ [0.9981706  0.00182934]
+ [0.9980197  0.00198033]
+ [0.9967229  0.00327712]
+ [0.9981061  0.00189382]
+ [0.99789447 0.00210554]
+ [0.99811447 0.00188549]
+ [0.9980526  0.00194745]
+ [0.9980161  0.00198381]
+ [0.99813604 0.00186394]
+ [0.9980545  0.00194556]
+ [0.02730325 0.9726968 ]
+ [0.99812764 0.00187236]
+ [0.9981495  0.00185048]
+ [0.99809223 0.00190773]
+ [0.99800915 0.00199088]
+ [0.9980792  0.00192082]
+ [0.9980375  0.00196252]
+ [0.9980572  0.00194281]
+ [0.99815804 0.00184196]
+ [0.9954514  0.00454859]
+ [0.9980983  0.00190165]
+ [0.99816257 0.00183747]
+ [0.99799156 0.00200845]
+ [0.9980692  0.00193082]
+ [0.99775785 0.00224222]
+ [0.99815816 0.00184182]
+ [0.99816483 0.0018352 ]
+ [0.9981729  0.00182714]
+ [0.998109   0.00189103]
+ [0.9980142  0.00198574]
+ [0.99600357 0.00399645]
+ [0.09741455 0.9025855 ]
+ [0.99813557 0.00186436]
+ [0.99819225 0.00180779]
+ [0.9981187  0.00188122]
+ [0.9980901  0.00190995]
+ [0.9978974  0.00210265]
+ [0.99807954 0.00192048]
+ [0.9981255  0.00187445]
+ [0.997849   0.00215098]
+ [0.9981006  0.00189942]
+ [0.05605259 0.94394743]
+ [0.9534871  0.04651283]
+ [0.99807775 0.00192229]
+ [0.9980996  0.00190035]
+ [0.99807334 0.00192664]
+ [0.9980469  0.00195312]
+ [0.9981464  0.00185365]
+ [0.99813735 0.00186261]
+ [0.99812704 0.00187292]
+ [0.998078   0.00192199]
+ [0.9978549  0.00214507]
+ [0.9977985  0.00220151]
+ [0.99752647 0.00247348]
+ [0.99795496 0.00204499]
+ [0.99808013 0.00191983]
+ [0.99808633 0.0019137 ]
+ [0.9980565  0.00194348]
+ [0.9980288  0.00197113]
+ [0.9980373  0.00196276]
+ [0.9981552  0.00184475]
+ [0.9978156  0.00218441]
+ [0.9981184  0.00188168]
+ [0.9980825  0.00191744]
+ [0.9889925  0.01100749]
+ [0.9981129  0.00188703]
+ [0.9981365  0.00186346]
+ [0.9981591  0.00184084]
+ [0.99807954 0.00192046]
+ [0.9978974  0.00210259]
+ [0.99780935 0.00219072]
+ [0.9978625  0.00213746]
+ [0.9980483  0.00195171]
+ [0.99779934 0.00220069]
+ [0.998021   0.00197898]
+ [0.9981065  0.00189349]
+ [0.99815243 0.0018475 ]
+ [0.02864563 0.9713544 ]
+ [0.9980909  0.00190903]
+ [0.9978846  0.00211537]
+ [0.9960892  0.00391084]
+ [0.998044   0.00195601]
+ [0.9980804  0.00191965]
+ [0.9979406  0.00205942]
+ [0.9981804  0.00181968]
+ [0.99764156 0.00235848]
+ [0.9981445  0.00185553]
+ [0.99803597 0.0019641 ]
+ [0.99804604 0.00195398]
+ [0.9981377  0.00186224]
+ [0.99303496 0.00696509]
+ [0.9976508  0.00234924]
+ [0.9977889  0.0022111 ]
+ [0.9980598  0.00194022]
+ [0.99804914 0.00195084]
+ [0.99790347 0.00209659]
+ [0.998116   0.00188396]
+ [0.99807465 0.00192539]
+ [0.9969777  0.00302234]
+ [0.99818134 0.00181872]
+ [0.9981117  0.00188829]
+ [0.96895874 0.03104128]
+ [0.02834671 0.9716532 ]
+ [0.9981292  0.00187083]
+ [0.99807906 0.00192094]
+ [0.99813485 0.00186508]
+ [0.99802125 0.00197879]
+ [0.99805593 0.00194406]
+ [0.99794716 0.00205285]
+ [0.99812084 0.00187908]
+ [0.99787927 0.0021207 ]
+ [0.9981129  0.00188709]
+ [0.998126   0.00187404]
+ [0.9979639  0.00203609]
+ [0.9966993  0.00330075]
+ [0.99809855 0.00190148]
+ [0.99804544 0.00195454]
+ [0.9981047  0.00189532]
+ [0.9981311  0.00186891]
+ [0.9961333  0.00386667]
+ [0.99737847 0.00262153]
+ [0.02673441 0.9732656 ]
+ [0.99808073 0.00191926]
+ [0.9981256  0.00187441]
+ [0.9978137  0.00218624]
+ [0.99784243 0.00215756]
+ [0.9933456  0.00665443]
+ [0.99809045 0.00190957]
+ [0.9981225  0.00187748]
+ [0.99790514 0.00209491]
+ [0.99812883 0.00187119]
+ [0.9979528  0.00204714]
+ [0.997908   0.00209198]
+ [0.9981342  0.00186584]
+ [0.99808925 0.00191071]]
+INFO:root:Average WSS@95:  0.0005952380952380931
+INFO:root:Average WSS@100:  0.050595238095238096
+INFO:root:----------------------------------------------------------------------
+INFO:root:----------------------------------------------------------------------
+INFO:root:running for Dataset - > Triptans.tsv  with Seed - > 55
+INFO:root:setting up seed -> 55
+INFO:root:Splitting and preprocessing  the data
+
+
+
+#######
+model distilbert
+epocxs 3
+batch_size 4
+
+/home/max/miniconda3/envs/tf/bin/python /home/max/Work/study/Project_dir/main.py
+2022-11-12 20:42:09.296549: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-11-12 20:42:09.296564: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+INFO:root:There are  1 GPU(s) available.
+INFO:root:Running on the GPU:- NVIDIA GeForce GTX 1050 Ti
+INFO:root:Deep learning framework pt
+INFO:root:Deep learning model  distilbert-base-uncased
+INFO:root:
+
+
+
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:----------------------------------------------------------------------
+INFO:root:running for Dataset - > Triptans.tsv  with Seed - > 18
+INFO:root:setting up seed -> 18
+INFO:root:Splitting and preprocessing  the data
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/tokenization_utils_base.py:2302: FutureWarning: The `pad_to_max_length` argument is deprecated and will be removed in a future version, use `padding=True` or `padding='longest'` to pad to the longest sequence in the batch, or use `padding='max_length'` to pad to a max length. In this case, you can give a specific length with `max_length` (e.g. `max_length=45`) or leave max_length to None to pad to the maximal input size of the model (e.g. 512 for Bert).
+  warnings.warn(
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertModel: ['vocab_transform.weight', 'vocab_projector.bias', 'vocab_layer_norm.weight', 'vocab_projector.weight', 'vocab_layer_norm.bias', 'vocab_transform.bias']
+- This IS expected if you are initializing DistilBertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+INFO:root:Start training...
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+INFO:root:   1    |   20    |   0.230189   |     -      |     -     |   12.24
+INFO:root:   1    |   40    |   0.066209   |     -      |     -     |   11.39
+INFO:root:   1    |   60    |   0.390785   |     -      |     -     |   11.36
+INFO:root:   1    |   80    |   0.076984   |     -      |     -     |   11.45
+INFO:root:   1    |   83    |   0.006680   |     -      |     -     |   1.61
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |    -    |   0.184923   |  0.188179  |   96.43   |   66.57
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |   20    |   0.127862   |     -      |     -     |   12.34
+INFO:root:   2    |   40    |   0.140038   |     -      |     -     |   11.79
+INFO:root:   2    |   60    |   0.252617   |     -      |     -     |   11.87
+INFO:root:   2    |   80    |   0.170507   |     -      |     -     |   11.80
+INFO:root:   2    |   83    |   0.363344   |     -      |     -     |   1.66
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |    -    |   0.179028   |  0.157836  |   96.43   |   68.07
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |   20    |   0.143076   |     -      |     -     |   12.33
+INFO:root:   3    |   40    |   0.048499   |     -      |     -     |   11.87
+INFO:root:   3    |   60    |   0.314871   |     -      |     -     |   11.84
+INFO:root:   3    |   80    |   0.102491   |     -      |     -     |   11.83
+INFO:root:   3    |   83    |   0.010670   |     -      |     -     |   1.64
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |    -    |   0.147069   |  0.157585  |   96.43   |   67.89
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root:Training complete!
+precision at 1.0 recall = 0.03785488958990536
+precision at 0.95 recall = 0.03785488958990536
+precision at 95 recall = 0.03785488958990536
+INFO:root:Average WSS@95:  0.006547619047619045
+INFO:root:Average WSS@100:  0.05654761904761905
+INFO:root:----------------------------------------------------------------------
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:
+
+
+
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:----------------------------------------------------------------------
+INFO:root:running for Dataset - > OralHypoglycemics.tsv  with Seed - > 18
+INFO:root:setting up seed -> 18
+INFO:root:Splitting and preprocessing  the data
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/tokenization_utils_base.py:2302: FutureWarning: The `pad_to_max_length` argument is deprecated and will be removed in a future version, use `padding=True` or `padding='longest'` to pad to the longest sequence in the batch, or use `padding='max_length'` to pad to a max length. In this case, you can give a specific length with `max_length` (e.g. `max_length=45`) or leave max_length to None to pad to the maximal input size of the model (e.g. 512 for Bert).
+  warnings.warn(
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertModel: ['vocab_transform.weight', 'vocab_projector.bias', 'vocab_layer_norm.weight', 'vocab_projector.weight', 'vocab_layer_norm.bias', 'vocab_transform.bias']
+- This IS expected if you are initializing DistilBertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+INFO:root:Start training...
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |   20    |   0.659120   |     -      |     -     |   12.01
+INFO:root:   1    |   40    |   0.571862   |     -      |     -     |   11.67
+INFO:root:   1    |   60    |   0.538649   |     -      |     -     |   11.79
+INFO:root:   1    |   62    |   0.529055   |     -      |     -     |   1.08
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |    -    |   0.589045   |  0.677727  |   73.02   |   50.60
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |   20    |   0.566263   |     -      |     -     |   12.34
+INFO:root:   2    |   40    |   0.429562   |     -      |     -     |   11.85
+INFO:root:   2    |   60    |   0.502276   |     -      |     -     |   11.90
+INFO:root:   2    |   62    |   0.401315   |     -      |     -     |   1.07
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |    -    |   0.497316   |  0.633933  |   75.00   |   51.14
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |   20    |   0.353182   |     -      |     -     |   12.44
+INFO:root:   3    |   40    |   0.398553   |     -      |     -     |   11.86
+INFO:root:   3    |   60    |   0.377684   |     -      |     -     |   11.85
+INFO:root:   3    |   62    |   0.852913   |     -      |     -     |   1.08
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |    -    |   0.391228   |  0.714147  |   76.19   |   51.20
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root:Training complete!
+precision at 1.0 recall = 0.272
+precision at 0.95 recall = 0.27310924369747897
+precision at 95 recall = 0.27310924369747897
+INFO:root:Average WSS@95:  0.00555555555555555
+INFO:root:Average WSS@100:  0.007936507936507936
+INFO:root:----------------------------------------------------------------------
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:
+
+
+
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:----------------------------------------------------------------------
+INFO:root:running for Dataset - > ACEInhibitors.tsv  with Seed - > 18
+INFO:root:setting up seed -> 18
+INFO:root:Splitting and preprocessing  the data
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/tokenization_utils_base.py:2302: FutureWarning: The `pad_to_max_length` argument is deprecated and will be removed in a future version, use `padding=True` or `padding='longest'` to pad to the longest sequence in the batch, or use `padding='max_length'` to pad to a max length. In this case, you can give a specific length with `max_length` (e.g. `max_length=45`) or leave max_length to None to pad to the maximal input size of the model (e.g. 512 for Bert).
+  warnings.warn(
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertModel: ['vocab_transform.weight', 'vocab_projector.bias', 'vocab_layer_norm.weight', 'vocab_projector.weight', 'vocab_layer_norm.bias', 'vocab_transform.bias']
+- This IS expected if you are initializing DistilBertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+INFO:root:Start training...
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+INFO:root:   1    |   20    |   0.086815   |     -      |     -     |   13.70
+INFO:root:   1    |   40    |   0.002415   |     -      |     -     |   13.23
+INFO:root:   1    |   60    |   0.163034   |     -      |     -     |   13.57
+INFO:root:   1    |   80    |   0.196366   |     -      |     -     |   11.71
+INFO:root:   1    |   100   |   0.078390   |     -      |     -     |   11.58
+INFO:root:   1    |   120   |   0.080194   |     -      |     -     |   11.61
+INFO:root:   1    |   140   |   0.222673   |     -      |     -     |   11.78
+INFO:root:   1    |   160   |   0.069094   |     -      |     -     |   11.79
+INFO:root:   1    |   180   |   0.003468   |     -      |     -     |   11.98
+INFO:root:   1    |   200   |   0.001928   |     -      |     -     |   11.84
+INFO:root:   1    |   220   |   0.163396   |     -      |     -     |   11.93
+INFO:root:   1    |   240   |   0.158233   |     -      |     -     |   12.04
+INFO:root:   1    |   260   |   0.075850   |     -      |     -     |   11.96
+INFO:root:   1    |   280   |   0.003219   |     -      |     -     |   12.06
+INFO:root:   1    |   300   |   0.275605   |     -      |     -     |   12.17
+INFO:root:   1    |   317   |   0.085776   |     -      |     -     |   10.24
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |    -    |   0.104272   |  0.087307  |   98.43   |  267.15
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |   20    |   0.127728   |     -      |     -     |   13.42
+INFO:root:   2    |   40    |   0.004486   |     -      |     -     |   11.90
+INFO:root:   2    |   60    |   0.146481   |     -      |     -     |   12.01
+INFO:root:   2    |   80    |   0.253558   |     -      |     -     |   11.92
+INFO:root:   2    |   100   |   0.201823   |     -      |     -     |   11.95
+INFO:root:   2    |   120   |   0.005035   |     -      |     -     |   11.92
+INFO:root:   2    |   140   |   0.002844   |     -      |     -     |   12.04
+INFO:root:   2    |   160   |   0.002120   |     -      |     -     |   11.91
+INFO:root:   2    |   180   |   0.228698   |     -      |     -     |   11.91
+INFO:root:   2    |   200   |   0.079240   |     -      |     -     |   11.79
+INFO:root:   2    |   220   |   0.002598   |     -      |     -     |   11.97
+INFO:root:   2    |   240   |   0.079995   |     -      |     -     |   12.04
+INFO:root:   2    |   260   |   0.002206   |     -      |     -     |   11.88
+INFO:root:   2    |   280   |   0.078685   |     -      |     -     |   11.92
+INFO:root:   2    |   300   |   0.077344   |     -      |     -     |   11.89
+INFO:root:   2    |   317   |   0.170835   |     -      |     -     |   10.21
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |    -    |   0.090845   |  0.084027  |   98.43   |  260.91
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |   20    |   0.003997   |     -      |     -     |   12.40
+INFO:root:   3    |   40    |   0.075620   |     -      |     -     |   11.88
+INFO:root:   3    |   60    |   0.138257   |     -      |     -     |   11.91
+INFO:root:   3    |   80    |   0.003122   |     -      |     -     |   11.87
+INFO:root:   3    |   100   |   0.121468   |     -      |     -     |   11.84
+INFO:root:   3    |   120   |   0.066049   |     -      |     -     |   11.88
+INFO:root:   3    |   140   |   0.057291   |     -      |     -     |   11.89
+INFO:root:   3    |   160   |   0.132184   |     -      |     -     |   12.38
+INFO:root:   3    |   180   |   0.061634   |     -      |     -     |   11.85
+INFO:root:   3    |   200   |   0.003829   |     -      |     -     |   11.85
+INFO:root:   3    |   220   |   0.176769   |     -      |     -     |   11.85
+INFO:root:   3    |   240   |   0.004318   |     -      |     -     |   11.92
+INFO:root:   3    |   260   |   0.055100   |     -      |     -     |   11.94
+INFO:root:   3    |   280   |   0.118770   |     -      |     -     |   13.54
+INFO:root:   3    |   300   |   0.160579   |     -      |     -     |   12.26
+INFO:root:   3    |   317   |   0.097281   |     -      |     -     |   11.37
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |    -    |   0.079363   |  0.059990  |   98.43   |  269.40
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root:Training complete!
+precision at 1.0 recall = 0.0881057268722467
+precision at 0.95 recall = 0.1310344827586207
+precision at 95 recall = 0.1310344827586207
+INFO:root:y_test values [0 0 0 ... 0 0 0]
+INFO:root:predictions values [[0.9983992  0.00160086]
+ [0.9978169  0.00218311]
+ [0.9980744  0.00192553]
+ ...
+ [0.9980592  0.00194079]
+ [0.99852955 0.0014704 ]
+ [0.9985399  0.00146003]]
+INFO:root:Average WSS@95:  0.8360062893081761
+INFO:root:Average WSS@100:  0.8215408805031447
+INFO:root:----------------------------------------------------------------------
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:
+
+
+
+----------------------------------------------------------------------------------------------------------
+with augmentation  augmenting language translations
+/home/max/miniconda3/envs/tf/bin/python /home/max/Work/study/Project_dir/main.py
+2022-11-12 21:11:59.725632: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-11-12 21:11:59.725645: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+INFO:root:There are  1 GPU(s) available.
+INFO:root:Running on the GPU:- NVIDIA GeForce GTX 1050 Ti
+INFO:root:Deep learning framework pt
+INFO:root:Deep learning model  distilbert-base-uncased
+INFO:root:
+
+
+
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:----------------------------------------------------------------------
+INFO:root:running for Dataset - > Triptans.tsv  with Seed - > 18
+INFO:root:setting up seed -> 18
+INFO:root:Splitting and preprocessing  the data
+INFO:root:augmenting language translations
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/tokenization_utils_base.py:2302: FutureWarning: The `pad_to_max_length` argument is deprecated and will be removed in a future version, use `padding=True` or `padding='longest'` to pad to the longest sequence in the batch, or use `padding='max_length'` to pad to a max length. In this case, you can give a specific length with `max_length` (e.g. `max_length=45`) or leave max_length to None to pad to the maximal input size of the model (e.g. 512 for Bert).
+  warnings.warn(
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertModel: ['vocab_transform.weight', 'vocab_projector.bias', 'vocab_layer_norm.bias', 'vocab_transform.bias', 'vocab_layer_norm.weight', 'vocab_projector.weight']
+- This IS expected if you are initializing DistilBertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+INFO:root:Start training...
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |   20    |   0.289745   |     -      |     -     |   12.16
+INFO:root:   1    |   40    |   0.353797   |     -      |     -     |   11.36
+INFO:root:   1    |   60    |   0.221368   |     -      |     -     |   11.33
+INFO:root:   1    |   80    |   0.341905   |     -      |     -     |   11.35
+INFO:root:   1    |   86    |   0.190851   |     -      |     -     |   3.30
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |    -    |   0.293921   |  0.167483  |   96.43   |   67.76
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |   20    |   0.214595   |     -      |     -     |   11.85
+INFO:root:   2    |   40    |   0.358348   |     -      |     -     |   11.39
+INFO:root:   2    |   60    |   0.270874   |     -      |     -     |   11.36
+INFO:root:   2    |   80    |   0.145225   |     -      |     -     |   11.48
+INFO:root:   2    |   86    |   0.146695   |     -      |     -     |   3.39
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |    -    |   0.239950   |  0.160301  |   96.43   |   67.54
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |   20    |   0.124604   |     -      |     -     |   11.79
+INFO:root:   3    |   40    |   0.070987   |     -      |     -     |   10.98
+INFO:root:   3    |   60    |   0.017017   |     -      |     -     |   11.57
+INFO:root:   3    |   80    |   0.217943   |     -      |     -     |   11.98
+INFO:root:   3    |   86    |   0.170668   |     -      |     -     |   3.53
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |    -    |   0.112180   |  0.147231  |   96.73   |   67.85
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root:Training complete!
+precision at 1.0 recall = 0.03614457831325301
+precision at 0.95 recall = 0.03614457831325301
+precision at 95 recall = 0.03614457831325301
+INFO:root:Average WSS@95:  -0.0380952380952381
+INFO:root:Average WSS@100:  0.011904761904761904
+INFO:root:----------------------------------------------------------------------
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:
+
+
+
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:----------------------------------------------------------------------
+INFO:root:running for Dataset - > OralHypoglycemics.tsv  with Seed - > 18
+INFO:root:setting up seed -> 18
+INFO:root:Splitting and preprocessing  the data
+INFO:root:augmenting language translations
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/tokenization_utils_base.py:2302: FutureWarning: The `pad_to_max_length` argument is deprecated and will be removed in a future version, use `padding=True` or `padding='longest'` to pad to the longest sequence in the batch, or use `padding='max_length'` to pad to a max length. In this case, you can give a specific length with `max_length` (e.g. `max_length=45`) or leave max_length to None to pad to the maximal input size of the model (e.g. 512 for Bert).
+  warnings.warn(
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertModel: ['vocab_transform.weight', 'vocab_projector.bias', 'vocab_layer_norm.bias', 'vocab_transform.bias', 'vocab_layer_norm.weight', 'vocab_projector.weight']
+- This IS expected if you are initializing DistilBertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+INFO:root:Start training...
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |   20    |   0.696556   |     -      |     -     |   11.33
+INFO:root:   1    |   40    |   0.599091   |     -      |     -     |   11.12
+INFO:root:   1    |   60    |   0.558970   |     -      |     -     |   12.24
+INFO:root:   1    |   79    |   0.534011   |     -      |     -     |   10.42
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |    -    |   0.599189   |  0.672490  |   64.29   |   57.98
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |   20    |   0.402624   |     -      |     -     |   11.85
+INFO:root:   2    |   40    |   0.257953   |     -      |     -     |   12.17
+INFO:root:   2    |   60    |   0.583918   |     -      |     -     |   11.37
+INFO:root:   2    |   79    |   0.476191   |     -      |     -     |   10.54
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |    -    |   0.429252   |  0.622181  |   75.79   |   59.72
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |   20    |   0.221309   |     -      |     -     |   11.26
+INFO:root:   3    |   40    |   0.411999   |     -      |     -     |   11.08
+INFO:root:   3    |   60    |   0.263965   |     -      |     -     |   11.43
+INFO:root:   3    |   79    |   0.209374   |     -      |     -     |   11.40
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |    -    |   0.276811   |  0.866238  |   69.05   |   60.12
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root:Training complete!
+precision at 1.0 recall = 0.2698412698412698
+precision at 0.95 recall = 0.2838427947598253
+precision at 95 recall = 0.2838427947598253
+INFO:root:Average WSS@95:  0.04126984126984126
+INFO:root:Average WSS@100:  0.0
+INFO:root:----------------------------------------------------------------------
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:
+
+
+
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:----------------------------------------------------------------------
+INFO:root:running for Dataset - > ACEInhibitors.tsv  with Seed - > 18
+INFO:root:setting up seed -> 18
+INFO:root:Splitting and preprocessing  the data
+INFO:root:augmenting language translations
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/tokenization_utils_base.py:2302: FutureWarning: The `pad_to_max_length` argument is deprecated and will be removed in a future version, use `padding=True` or `padding='longest'` to pad to the longest sequence in the batch, or use `padding='max_length'` to pad to a max length. In this case, you can give a specific length with `max_length` (e.g. `max_length=45`) or leave max_length to None to pad to the maximal input size of the model (e.g. 512 for Bert).
+  warnings.warn(
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertModel: ['vocab_transform.weight', 'vocab_projector.bias', 'vocab_layer_norm.bias', 'vocab_transform.bias', 'vocab_layer_norm.weight', 'vocab_projector.weight']
+- This IS expected if you are initializing DistilBertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+INFO:root:Start training...
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+INFO:root:   1    |   20    |   0.211775   |     -      |     -     |   12.72
+INFO:root:   1    |   40    |   0.340989   |     -      |     -     |   13.66
+INFO:root:   1    |   60    |   0.101787   |     -      |     -     |   11.77
+INFO:root:   1    |   80    |   0.076437   |     -      |     -     |   12.99
+INFO:root:   1    |   100   |   0.141058   |     -      |     -     |   12.04
+INFO:root:   1    |   120   |   0.135604   |     -      |     -     |   12.98
+INFO:root:   1    |   140   |   0.140877   |     -      |     -     |   12.47
+INFO:root:   1    |   160   |   0.198142   |     -      |     -     |   12.49
+INFO:root:   1    |   180   |   0.047363   |     -      |     -     |   13.52
+INFO:root:   1    |   200   |   0.002905   |     -      |     -     |   13.15
+INFO:root:   1    |   220   |   0.265651   |     -      |     -     |   12.09
+INFO:root:   1    |   240   |   0.174882   |     -      |     -     |   13.61
+INFO:root:   1    |   260   |   0.204415   |     -      |     -     |   11.67
+INFO:root:   1    |   280   |   0.323856   |     -      |     -     |   12.82
+INFO:root:   1    |   300   |   0.024144   |     -      |     -     |   11.96
+INFO:root:   1    |   320   |   0.005638   |     -      |     -     |   12.23
+INFO:root:   1    |   323   |   2.041500   |     -      |     -     |   1.41
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |    -    |   0.167428   |  0.099140  |   98.43   |  275.74
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |   20    |   0.199803   |     -      |     -     |   12.74
+INFO:root:   2    |   40    |   0.135486   |     -      |     -     |   12.31
+INFO:root:   2    |   60    |   0.066548   |     -      |     -     |   12.40
+INFO:root:   2    |   80    |   0.228573   |     -      |     -     |   13.46
+INFO:root:   2    |   100   |   0.180739   |     -      |     -     |   13.39
+INFO:root:   2    |   120   |   0.066889   |     -      |     -     |   12.65
+INFO:root:   2    |   140   |   0.082338   |     -      |     -     |   12.51
+INFO:root:   2    |   160   |   0.002200   |     -      |     -     |   13.60
+INFO:root:   2    |   180   |   0.079649   |     -      |     -     |   12.64
+INFO:root:   2    |   200   |   0.002515   |     -      |     -     |   12.65
+INFO:root:   2    |   220   |   0.076371   |     -      |     -     |   12.88
+INFO:root:   2    |   240   |   0.076092   |     -      |     -     |   12.63
+INFO:root:   2    |   260   |   0.064958   |     -      |     -     |   12.67
+INFO:root:   2    |   280   |   0.064615   |     -      |     -     |   12.79
+INFO:root:   2    |   300   |   0.063017   |     -      |     -     |   12.47
+INFO:root:   2    |   320   |   0.002198   |     -      |     -     |   12.55
+INFO:root:   2    |   323   |   0.002654   |     -      |     -     |   1.53
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |    -    |   0.086567   |  0.077572  |   98.43   |  277.67
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |   20    |   0.125461   |     -      |     -     |   12.17
+INFO:root:   3    |   40    |   0.109272   |     -      |     -     |   11.69
+INFO:root:   3    |   60    |   0.002103   |     -      |     -     |   11.44
+INFO:root:   3    |   80    |   0.125926   |     -      |     -     |   11.72
+INFO:root:   3    |   100   |   0.046902   |     -      |     -     |   11.52
+INFO:root:   3    |   120   |   0.003074   |     -      |     -     |   11.71
+INFO:root:   3    |   140   |   0.058166   |     -      |     -     |   11.94
+INFO:root:   3    |   160   |   0.001967   |     -      |     -     |   11.67
+INFO:root:   3    |   180   |   0.045922   |     -      |     -     |   11.30
+INFO:root:   3    |   200   |   0.039224   |     -      |     -     |   11.85
+INFO:root:   3    |   220   |   0.048219   |     -      |     -     |   11.50
+INFO:root:   3    |   240   |   0.088366   |     -      |     -     |   11.35
+INFO:root:   3    |   260   |   0.233258   |     -      |     -     |   11.52
+INFO:root:   3    |   280   |   0.001453   |     -      |     -     |   11.58
+INFO:root:   3    |   300   |   0.129406   |     -      |     -     |   11.62
+INFO:root:   3    |   320   |   0.001680   |     -      |     -     |   11.61
+INFO:root:   3    |   323   |   0.181604   |     -      |     -     |   1.58
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |    -    |   0.067526   |  0.067111  |   98.43   |  255.13
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root:Training complete!
+precision at 1.0 recall = 0.04739336492890995
+precision at 0.95 recall = 0.1043956043956044
+precision at 95 recall = 0.1043956043956044
+INFO:root:Average WSS@95:  0.8069182389937106
+INFO:root:Average WSS@100:  0.6682389937106918
+INFO:root:----------------------------------------------------------------------
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:
+
+
+
+Augmentaion with picos
+
+/home/max/miniconda3/envs/tf/bin/python /home/max/Work/study/Project_dir/main.py
+2022-11-12 21:43:47.317022: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2022-11-12 21:43:47.317035: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+INFO:root:There are  1 GPU(s) available.
+INFO:root:Running on the GPU:- NVIDIA GeForce GTX 1050 Ti
+INFO:root:Deep learning framework pt
+INFO:root:Deep learning model  distilbert-base-uncased
+INFO:root:
+
+
+
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:----------------------------------------------------------------------
+INFO:root:running for Dataset - > Triptans.tsv  with Seed - > 18
+INFO:root:setting up seed -> 18
+INFO:root:Splitting and preprocessing  the data
+INFO:root:augmenting pico sentences
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/tokenization_utils_base.py:2302: FutureWarning: The `pad_to_max_length` argument is deprecated and will be removed in a future version, use `padding=True` or `padding='longest'` to pad to the longest sequence in the batch, or use `padding='max_length'` to pad to a max length. In this case, you can give a specific length with `max_length` (e.g. `max_length=45`) or leave max_length to None to pad to the maximal input size of the model (e.g. 512 for Bert).
+  warnings.warn(
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertModel: ['vocab_layer_norm.weight', 'vocab_projector.bias', 'vocab_transform.weight', 'vocab_projector.weight', 'vocab_transform.bias', 'vocab_layer_norm.bias']
+- This IS expected if you are initializing DistilBertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+INFO:root:Start training...
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |   20    |   0.233874   |     -      |     -     |   12.31
+INFO:root:   1    |   40    |   0.065682   |     -      |     -     |   11.65
+INFO:root:   1    |   60    |   0.407854   |     -      |     -     |   13.28
+INFO:root:   1    |   80    |   0.072767   |     -      |     -     |   11.67
+INFO:root:   1    |   83    |   0.007989   |     -      |     -     |   1.57
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |    -    |   0.188826   |  0.182411  |   96.43   |   68.55
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |   20    |   0.122921   |     -      |     -     |   11.78
+INFO:root:   2    |   40    |   0.132729   |     -      |     -     |   11.32
+INFO:root:   2    |   60    |   0.225810   |     -      |     -     |   11.33
+INFO:root:   2    |   80    |   0.153044   |     -      |     -     |   11.33
+INFO:root:   2    |   83    |   0.311771   |     -      |     -     |   1.60
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |    -    |   0.163671   |  0.151119  |   96.43   |   65.96
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |   20    |   0.083694   |     -      |     -     |   11.96
+INFO:root:   3    |   40    |   0.025492   |     -      |     -     |   11.49
+INFO:root:   3    |   60    |   0.248830   |     -      |     -     |   11.51
+INFO:root:   3    |   80    |   0.088262   |     -      |     -     |   11.60
+INFO:root:   3    |   83    |   0.004338   |     -      |     -     |   1.61
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |    -    |   0.107408   |  0.163165  |   96.13   |   66.77
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root:Training complete!
+precision at 1.0 recall = 0.038834951456310676
+precision at 0.95 recall = 0.038834951456310676
+precision at 95 recall = 0.038834951456310676
+INFO:root:Average WSS@95:  0.03035714285714286
+INFO:root:Average WSS@100:  0.08035714285714286
+INFO:root:----------------------------------------------------------------------
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:
+
+
+
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:----------------------------------------------------------------------
+INFO:root:running for Dataset - > OralHypoglycemics.tsv  with Seed - > 18
+INFO:root:setting up seed -> 18
+INFO:root:Splitting and preprocessing  the data
+INFO:root:augmenting pico sentences
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/tokenization_utils_base.py:2302: FutureWarning: The `pad_to_max_length` argument is deprecated and will be removed in a future version, use `padding=True` or `padding='longest'` to pad to the longest sequence in the batch, or use `padding='max_length'` to pad to a max length. In this case, you can give a specific length with `max_length` (e.g. `max_length=45`) or leave max_length to None to pad to the maximal input size of the model (e.g. 512 for Bert).
+  warnings.warn(
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertModel: ['vocab_layer_norm.weight', 'vocab_projector.bias', 'vocab_transform.weight', 'vocab_projector.weight', 'vocab_transform.bias', 'vocab_layer_norm.bias']
+- This IS expected if you are initializing DistilBertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+INFO:root:Start training...
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |   20    |   0.651440   |     -      |     -     |   11.99
+INFO:root:   1    |   40    |   0.603842   |     -      |     -     |   12.55
+INFO:root:   1    |   60    |   0.573534   |     -      |     -     |   11.76
+INFO:root:   1    |   62    |   0.421072   |     -      |     -     |   1.08
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |    -    |   0.604284   |  0.611313  |   73.02   |   50.63
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |   20    |   0.574231   |     -      |     -     |   11.68
+INFO:root:   2    |   40    |   0.460289   |     -      |     -     |   11.18
+INFO:root:   2    |   60    |   0.591518   |     -      |     -     |   11.62
+INFO:root:   2    |   62    |   0.486371   |     -      |     -     |   0.97
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |    -    |   0.540758   |  0.623477  |   62.30   |   48.87
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |   20    |   0.431776   |     -      |     -     |   11.78
+INFO:root:   3    |   40    |   0.341252   |     -      |     -     |   11.21
+INFO:root:   3    |   60    |   0.479435   |     -      |     -     |   11.09
+INFO:root:   3    |   62    |   0.531708   |     -      |     -     |   1.09
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |    -    |   0.421341   |  0.770254  |   74.21   |   48.33
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root:Training complete!
+precision at 1.0 recall = 0.27091633466135456
+precision at 0.95 recall = 0.26639344262295084
+precision at 95 recall = 0.26639344262295084
+INFO:root:Average WSS@95:  -0.01825396825396826
+INFO:root:Average WSS@100:  0.003968253968253968
+INFO:root:----------------------------------------------------------------------
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:
+
+
+
+INFO:root:------------------------------------------------------------------------------------------
+INFO:root:----------------------------------------------------------------------
+INFO:root:running for Dataset - > ACEInhibitors.tsv  with Seed - > 18
+INFO:root:setting up seed -> 18
+INFO:root:Splitting and preprocessing  the data
+INFO:root:augmenting pico sentences
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/tokenization_utils_base.py:2302: FutureWarning: The `pad_to_max_length` argument is deprecated and will be removed in a future version, use `padding=True` or `padding='longest'` to pad to the longest sequence in the batch, or use `padding='max_length'` to pad to a max length. In this case, you can give a specific length with `max_length` (e.g. `max_length=45`) or leave max_length to None to pad to the maximal input size of the model (e.g. 512 for Bert).
+  warnings.warn(
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertModel: ['vocab_layer_norm.weight', 'vocab_projector.bias', 'vocab_transform.weight', 'vocab_projector.weight', 'vocab_transform.bias', 'vocab_layer_norm.bias']
+- This IS expected if you are initializing DistilBertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+/home/max/miniconda3/envs/tf/lib/python3.9/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+INFO:root:Start training...
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |   20    |   0.098996   |     -      |     -     |   11.41
+INFO:root:   1    |   40    |   0.002607   |     -      |     -     |   11.73
+INFO:root:   1    |   60    |   0.161952   |     -      |     -     |   11.24
+INFO:root:   1    |   80    |   0.204269   |     -      |     -     |   10.68
+INFO:root:   1    |   100   |   0.077647   |     -      |     -     |   10.69
+INFO:root:   1    |   120   |   0.080485   |     -      |     -     |   10.72
+INFO:root:   1    |   140   |   0.224986   |     -      |     -     |   11.36
+INFO:root:   1    |   160   |   0.069987   |     -      |     -     |   11.13
+INFO:root:   1    |   180   |   0.003478   |     -      |     -     |   10.77
+INFO:root:   1    |   200   |   0.001974   |     -      |     -     |   12.24
+INFO:root:   1    |   220   |   0.162480   |     -      |     -     |   13.09
+INFO:root:   1    |   240   |   0.157634   |     -      |     -     |   11.73
+INFO:root:   1    |   260   |   0.076287   |     -      |     -     |   11.71
+INFO:root:   1    |   280   |   0.003236   |     -      |     -     |   11.68
+INFO:root:   1    |   300   |   0.281442   |     -      |     -     |   11.70
+INFO:root:   1    |   317   |   0.082735   |     -      |     -     |   9.92
+INFO:root:----------------------------------------------------------------------
+INFO:root:   1    |    -    |   0.105832   |  0.086810  |   98.43   |  251.56
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |   20    |   0.127383   |     -      |     -     |   12.28
+INFO:root:   2    |   40    |   0.004549   |     -      |     -     |   11.76
+INFO:root:   2    |   60    |   0.152338   |     -      |     -     |   12.01
+INFO:root:   2    |   80    |   0.331189   |     -      |     -     |   13.16
+INFO:root:   2    |   100   |   0.174551   |     -      |     -     |   13.60
+INFO:root:   2    |   120   |   0.005394   |     -      |     -     |   13.67
+INFO:root:   2    |   140   |   0.003179   |     -      |     -     |   12.70
+INFO:root:   2    |   160   |   0.002337   |     -      |     -     |   11.70
+INFO:root:   2    |   180   |   0.228025   |     -      |     -     |   12.32
+INFO:root:   2    |   200   |   0.076232   |     -      |     -     |   11.75
+INFO:root:   2    |   220   |   0.003295   |     -      |     -     |   11.81
+INFO:root:   2    |   240   |   0.074776   |     -      |     -     |   11.72
+INFO:root:   2    |   260   |   0.002572   |     -      |     -     |   11.76
+INFO:root:   2    |   280   |   0.078790   |     -      |     -     |   11.80
+INFO:root:   2    |   300   |   0.072441   |     -      |     -     |   11.99
+INFO:root:   2    |   317   |   0.153392   |     -      |     -     |   10.50
+INFO:root:----------------------------------------------------------------------
+INFO:root:   2    |    -    |   0.092692   |  0.079183  |   98.43   |  264.16
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root: Epoch  |  Batch  |  Train Loss  |  Val Loss  |  Val Acc  |  Elapsed
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |   20    |   0.003509   |     -      |     -     |   12.36
+INFO:root:   3    |   40    |   0.063382   |     -      |     -     |   11.76
+INFO:root:   3    |   60    |   0.127690   |     -      |     -     |   11.83
+INFO:root:   3    |   80    |   0.002795   |     -      |     -     |   11.87
+INFO:root:   3    |   100   |   0.096857   |     -      |     -     |   11.80
+INFO:root:   3    |   120   |   0.058795   |     -      |     -     |   11.86
+INFO:root:   3    |   140   |   0.060109   |     -      |     -     |   11.86
+INFO:root:   3    |   160   |   0.149664   |     -      |     -     |   11.77
+INFO:root:   3    |   180   |   0.044137   |     -      |     -     |   11.78
+INFO:root:   3    |   200   |   0.002663   |     -      |     -     |   11.72
+INFO:root:   3    |   220   |   0.162088   |     -      |     -     |   11.78
+INFO:root:   3    |   240   |   0.003706   |     -      |     -     |   11.81
+INFO:root:   3    |   260   |   0.042215   |     -      |     -     |   11.84
+INFO:root:   3    |   280   |   0.082928   |     -      |     -     |   11.87
+INFO:root:   3    |   300   |   0.104145   |     -      |     -     |   11.86
+INFO:root:   3    |   317   |   0.069287   |     -      |     -     |   10.06
+INFO:root:----------------------------------------------------------------------
+INFO:root:   3    |    -    |   0.066903   |  0.078491  |   98.43   |  259.18
+INFO:root:----------------------------------------------------------------------
+INFO:root:
+
+INFO:root:Training complete!
+precision at 1.0 recall = 0.05830903790087463
+precision at 0.95 recall = 0.05604719764011799
+precision at 95 recall = 0.05604719764011799
+INFO:root:Average WSS@95:  0.6834905660377358
+INFO:root:Average WSS@100:  0.7303459119496856
+INFO:root:----------------------------------------------------------------------
+
+
+
+running on colab     seeds = [9, 18, 26, 35, 45, 56, 65, 75, 85, 95]

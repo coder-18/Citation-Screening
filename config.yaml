@@ -1,0 +1,22 @@
+Augmentation:
+  augment: False
+  language_translated_aug : True
+  language_translated_aug_dir : augmented_ende/
+  augtext_augmentation : False
+Model:
+  model_name : emilyalsentzer/Bio_ClinicalBERT #microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext #michiyasunaga/BioLinkBERT-large  #distilbert-base-uncased michiyasunaga/BioLinkBERT-base
+  model_text : Abstract  # Abstract # Pico_sentences
+  pico_dir : pico_data_dir/
+  framework : pt  # add tf option later
+  epochs : 3
+  batch_size : 16
+  learning_rate : 0.00005
+  dropout : 0.4
+Data:
+  data_dir : data_dir/
+  datasets : ['copd.tsv', 'proton_beam.tsv', 'micro_nutrients.tsv'] #[] for all datasets or pass a list for e.g ['PFOS-PFOA.tsv', 'BPA.tsv', 'Transgenerational.tsv', 'Fluoride.tsv', 'NeuropathicPain.tsv'] for swift,
+Preprocessing:
+  lower_case : False
+
+
+
